@@ -30,7 +30,7 @@ const Header = () => {
                             
                         </Nav>
                         <Nav>
-                            <Nav.Link href="#deets">Profile</Nav.Link>
+                            <Nav.Link href="#deets"><Button variant="secondary">Profile</Button>{' '}</Nav.Link>
                             <Nav.Link eventKey={2} href="">
                             <Button variant="secondary">Login</Button>{' '}
                             </Nav.Link>
