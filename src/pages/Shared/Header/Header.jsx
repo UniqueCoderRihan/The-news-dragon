@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../../assets/logo.png'
 import moment from 'moment/moment';
 import Button from 'react-bootstrap/Button';
-import { Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import Marquee from 'react-fast-marquee';
 const Header = () => {
     return (
