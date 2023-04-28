@@ -5,7 +5,12 @@ import Button from 'react-bootstrap/Button';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import Marquee from 'react-fast-marquee';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContex } from '../../../Providers/AuthProviders';
+import { FaUser } from 'react-icons/fa';
 const Header = () => {
+    const {user} = useContext(AuthContex);
+    console.log(user);
     return (
         <Container>
             <div className="text-center">
@@ -33,9 +38,19 @@ const Header = () => {
                             
                         </Nav>
                         <Nav>
-                            <Nav.Link href="#deets"><Button variant="secondary">Profile</Button>{' '}</Nav.Link>
+                            <Nav.Link href="#deets">
+                                {user &&
+                                <FaUser style={{fontSize:'25px'}}></FaUser>
+                                }
+                                </Nav.Link>
                             <Nav.Link eventKey={2} href="">
-                            <Button variant="secondary">Login</Button>{' '}
+                            {user ?
+                                <Button variant="secondary">Logout</Button>
+                                :
+                                <Button variant="secondary">
+                                    <Link to='/login'>Login</Link>
+                                </Button>
+                            }
                             </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
