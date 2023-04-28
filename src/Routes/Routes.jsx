@@ -10,12 +10,14 @@ const router = createBrowserRouter([
         element: <Main></Main>,
         children: [
             {
-                path: '/',
+                path: '/category',
                 element: <Home></Home>
             },
             {
                 path:'/category/:id',
-                element: <Category></Category>
+                element: <Category></Category>,
+                loader:({params})=> fetch(`http://localhost:5000/catagoris/${params.id}`)
+                // Always Note Your Link Will Be Server Site. I was depress 40 minit for this Problem
             }
         ]
     },
