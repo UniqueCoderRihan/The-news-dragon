@@ -1,12 +1,14 @@
 import React from 'react';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { createContext } from 'react';
 import app from '../Firebase/firebase.config';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 export const AuthContex = createContext(null)
 const auth = getAuth(app);
 const AuthProviders = ({children}) => {
-    const user = null;
+    const [user,setUser] = useState(null);
 
     const createUserWithPassword = (email,password)=>{
         return createUserWithEmailAndPassword(auth,email,password)
@@ -17,7 +19,16 @@ const AuthProviders = ({children}) => {
     const LogOut = ()=>{
         return signOut(auth)
     }
-
+    // OnAuthStateChange
+    useEffect(()=>{
+        const unsubcrive = onAuthStateChanged(auth,loggedUser =>{
+            console.log('Looged In USer Inside observwer',loggedUser);
+            setUser(loggedUser)
+        })
+        return()=>{
+            unsubcrive();
+        }
+    },[])
     const AuthInfo = {
         user,
         createUserWithPassword,
