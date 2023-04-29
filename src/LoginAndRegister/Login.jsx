@@ -12,7 +12,7 @@ const Login = () => {
 
     const location = useLocation();
     console.log(location);
-    const from = location.state.from.pathname || '/category/0';
+    const from = location.state?.from?.pathname || '/category/0';
 
     const handleLogin=(event)=>{
         event.preventDefault();
