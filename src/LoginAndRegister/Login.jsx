@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { Button, Container,Form } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContex } from '../Providers/AuthProviders';
 import { useState } from 'react';
 
@@ -9,6 +9,10 @@ const Login = () => {
     const {LoginWithPassword} = useContext(AuthContex);
     const navigate = useNavigate();
     const [error,setError] = useState();
+
+    const location = useLocation();
+    console.log(location);
+    const from = location.state.from.pathname || '/category/0';
 
     const handleLogin=(event)=>{
         event.preventDefault();
@@ -20,7 +24,7 @@ const Login = () => {
         LoginWithPassword(email,password)
         .then(result=>{
             const LoginUser = result.user;
-            navigate('/category/0')
+            navigate(from)
             console.log(LoginUser);
         })
         .catch(error=>setError(error.message))
