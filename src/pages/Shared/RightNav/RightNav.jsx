@@ -3,13 +3,16 @@ import { Button, ListGroup } from 'react-bootstrap';
 import { FaGithub, FaGoogle,FaFacebook,FaTwitter,FaInstagram } from 'react-icons/fa';
 import Qzone from '../Qzone/Qzone';
 import './RightNav.css'
+import { useContext } from 'react';
+import { AuthContex } from '../../../Providers/AuthProviders';
 
-const RightNav = () => {
+const RightNav = () => { 
+    const {singInWithGoogle,singInWithGithub} = useContext(AuthContex);
     return (
         <div>
             <h4>Login With</h4>
-            <Button className='my-1' variant="outline-primary"><FaGoogle></FaGoogle> Login With Google</Button>{' '}
-            <Button variant="outline-secondary"> <FaGithub></FaGithub> Login With Github</Button>{' '}
+            <Button onClick={singInWithGoogle} className='my-1' variant="outline-primary"><FaGoogle></FaGoogle> Login With Google</Button>{' '}
+            <Button onClick={singInWithGithub} variant="outline-secondary"> <FaGithub></FaGithub> Login With Github</Button>{' '}
             <div>
                 <h4 className='mt-4'>Find Us On</h4>
                 <ListGroup>
