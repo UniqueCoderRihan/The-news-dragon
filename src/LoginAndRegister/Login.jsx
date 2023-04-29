@@ -1,12 +1,34 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Button, Container,Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { AuthContex } from '../Providers/AuthProviders';
+import { useState } from 'react';
 
 const Login = () => {
+    const {LoginWithPassword} = useContext(AuthContex);
+    const [error,setError] = useState();
+
+    const handleLogin=(event)=>{
+        event.preventDefault();
+        setError(null);
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        LoginWithPassword(email,password)
+        .then(result=>{
+            const LoginUser = result.user;
+            console.log(LoginUser);
+        })
+        .catch(error=>setError(error.message))
+
+    }
+
     return (
         <Container className='w-25 mx-auto'>
             <h3>Please Login</h3>
-            <Form>
+            <Form onSubmit={handleLogin}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" name='email' placeholder="Enter email" />
@@ -22,6 +44,7 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     Login
                 </Button>
+                <p className='text-danger'>{error}</p>
                 <p><small> <Link to='/register'>New To? SIngUp</Link></small></p>
             </Form>
         </Container>
