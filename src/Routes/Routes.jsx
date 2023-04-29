@@ -34,7 +34,7 @@ const router = createBrowserRouter([
             {
                 path:':id',
                 element: <Category></Category>,
-                loader:({params})=> fetch(`http://localhost:5000/catagoris/${params.id}`)
+                loader:({params})=> fetch(`https://the-news-dragon-server-uniquecoderrihan.vercel.app//catagoris/${params.id}`)
                 // Always Note Your Link Will Be Server Site. I was depress 40 minit for this Problem
             }
         ]
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
             {
                 path: ':id',
                 element: <PrivateRoutes><News></News></PrivateRoutes>,
-                loader: ({params})=>fetch(`http://localhost:5000/news/${params.id}`)
+                loader: ({params})=>fetch(`https://the-news-dragon-server-uniquecoderrihan.vercel.app//news/${params.id}`)
             }
         ]
     }
