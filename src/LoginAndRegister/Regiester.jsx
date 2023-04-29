@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContex } from '../Providers/AuthProviders';
 import { useState } from 'react';
 
@@ -9,6 +9,7 @@ const Regiester = () => {
 
     const { createUserWithPassword } = useContext(AuthContex);
     const [error,seError] = useState();
+    const navigate = useNavigate();
     const handleRegister = (event)=>{
         event.preventDefault();
         seError(null)
@@ -21,7 +22,7 @@ const Regiester = () => {
         createUserWithPassword(email,password)
         .then(result=>{
             const newUser = result.user;
-
+            navigate('/category/0')
         })
         .catch(error=>seError(error.message))
     }
