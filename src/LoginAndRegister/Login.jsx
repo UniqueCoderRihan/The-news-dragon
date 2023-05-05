@@ -4,11 +4,14 @@ import { Button, Container,Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContex } from '../Providers/AuthProviders';
 import { useState } from 'react';
+import UseTitle from '../hooks/UseTitle/UseTitle';
 
 const Login = () => {
     const {LoginWithPassword} = useContext(AuthContex);
     const navigate = useNavigate();
     const [error,setError] = useState();
+
+    UseTitle('Login');
 
     const location = useLocation();
     console.log(location);
